@@ -8,10 +8,15 @@ export const personalDetails = {
 };
 
 export const skills = [
-  { name: "Frontend", icon: Layout, items: ["React", "Next.js", "Tailwind CSS", "UI/UX Design"] },
+  { name: "Programming Languages", icon: Code, items: ["Java", "Python", "Javascript","Typescript"] },
+  { name: "Frontend", icon: Layout, items: ["React(Vite)", "Next.js", "Tailwind CSS", "UI/UX Design","JavaScript (ES6+)","TypeScript","Framer motion"] },
   { name: "Backend", icon: Server, items: ["Node.js", "Express.js", "REST APIs"] },
   { name: "Database", icon: Database, items: ["MongoDB", "PostgreSQL"] },
   { name: "DevOps & Tools", icon: Cloud, items: ["AWS", "Git", "Docker", "Algorithms"] },
+  { name: "Computer Science Skills", icon: Code, items: ["Data Structures", "Algorithms", "Problem Solving","OOPS"] },
+  { name: "Tools & Platforms", icon: Code,items: ["Git & GitHub", "VS Code", "MongoDB Atlas", "Figma","AWS","Vercel",""] },
+  { name: "Soft Skills", icon: Code, items: ["Effective Communication", "Team Collaboration", "Adaptability", "Time Management"] },
+  
 ];
 
 export const projects = [
@@ -19,14 +24,34 @@ export const projects = [
     title: "NxtStep",
     description: "A comprehensive career counseling platform designed to help users navigate their professional paths.",
     tech: ["Next.js", "Express.js", "MongoDB", "Tailwind CSS"],
-    link: "#",
+    link: "https://github.com/Arynkr07/NXTSTEP",
     status: "Completed"
   },
   {
-    title: "Travel Planner",
-    description: "An interactive tool for travelers to plan city-based trips with detailed budget allocation and local guide integration.",
-    tech: ["React", "Node.js", "Map APIs"],
-    link: "#",
+    title: "Markdarshan",
+    description: "Markdarshan Truck Routing is an intelligent logistics solution that optimizes truck routes for faster, safer, and more cost-efficient transportation.",
+    tech: ["Nextjs", "Express.js", "Typescript", "Tailwind CSS","Google Maps API","Mongodb","Xg Boast Model"],
+    link: "https://github.com/Akshaj-mishra/MARGDARSHAN",
     status: "In Development"
+  },
+  {    title: "Whiteboard",
+    description: "A real-time collaborative whiteboard application enabling multiple users to draw, write, and brainstorm together online.",
+    tech: ["React","CSS", "Socket.io", "Canvas API"],
+    link: "https://github.com/Arynkr07/whiteboard",
+    status: "Completed"
+  },
+  {
+    title: "Alphashot",
+    description: "A child-friendly educational game helping them to learn different alphabets by a simplistic 2D UI and a different object for each alphabet.",
+    tech: ["C#","Blender", "Unity","Unity assets"],
+    link: "https://github.com/Arynkr07/AlphaShot",
+    status: "Completed"
+  },
+  {
+    title: "Personal Portfolio Website",
+    description: "A personal portfolio website to showcase my projects, skills, and experience as a software developer.",
+    tech: ["React", "Javascript","Tailwind CSS", "Framer Motion"],
+    link: "#",
+    status: "Completed"
   }
 ];

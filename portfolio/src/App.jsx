@@ -1,8 +1,12 @@
+// src/App.jsx
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Education from './components/Education';
+import Certificate from './components/Certificate';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Contact from './components/Contact'; // <--- Import Contact
 
 function App() {
   return (
@@ -11,29 +15,20 @@ function App() {
       <Navbar />
 
       <main>
-        {/* 1. Hero Section */}
-        <div id="hero" className="scroll-mt-20">
-          <Hero />
-        </div>
+        {/* ... Previous Sections ... */}
+        <div id="home" className="scroll-mt-20"><Hero /></div>
+        <div id="education" className="scroll-mt-24"><Education /></div>
+        <div id="Certificate" className="scroll-mt-24"><Certificate/></div>
+        <div id="skills" className="scroll-mt-24"><Skills /></div>
+        <div id="projects" className="scroll-mt-24"><Projects /></div>
         
-        {/* 2. Skills Section */}
-        <div id="skills" className="scroll-mt-24">
-          <Skills />
+        {/* ADD CONTACT COMPONENT HERE */}
+        <div id="contact" className="scroll-mt-24">
+          <Contact />
         </div>
-
-        {/* 3. Projects Section */}
-        <div id="projects" className="scroll-mt-24">
-          <Projects />
-        </div>
-        
-        {/* 4. Contact Section */}
-        
       </main>
 
-      <footer className="py-6 text-center text-sm text-gray-500 dark:text-gray-600 border-t border-gray-100 dark:border-gray-900">
-        <p>&copy; {new Date().getFullYear()} Aryan Kumar. All rights reserved.</p>
-      </footer>
-
+      {/* You can remove the footer from App.jsx since Contact.jsx now handles it */}
     </div>
   );
 }
