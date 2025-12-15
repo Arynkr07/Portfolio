@@ -1,91 +1,109 @@
 import React from 'react';
+import { Download, Linkedin, Github, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { personalDetails } from '../data';
 
-const Hero = () => {
-  // Animation config for the container
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1, // Delays each letter by 0.1s
-      },
-    },
-  };
-
-  // Animation config for individual letters
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50, rotateX: -90 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      rotateX: 0,
-      transition: { type: "spring", stiffness: 50, damping: 10 } 
-    },
-  };
-
+const Home = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-20">
-      <div className="max-w-4xl text-center space-y-8">
+    <section id="home" className=" min-h-screen flex items-center pt-20 relative overflow-hidden">
+      
+      {/* Background Glow (Optional subtle effect) */}
+      <div className="absolute top-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-[#FF3D00] rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full z-10 flex flex-col-reverse md:flex-row items-center justify-between">
         
-        {/* Intro text */}
-        <motion.h2 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-xl md:text-2xl text-[#FF4D00] font-bold tracking-wide uppercase"
-        >
-          Hi, I am
-        </motion.h2>
+        {/* --- LEFT CONTENT --- */}
+        <div className="w-full md:w-1/2 space-y-6 text-center md:text-left mt-12 md:mt-0">
+          
+          {/* 1. GREETING */}
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[#FF3D00] font-bold tracking-widest uppercase text-lg"
+          >
+            Hello, Welcome
+          </motion.p>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-5xl md:text-7xl font-extrabold text-white leading-tight"
+          >
+            I'm <span className="text-[#FF3D00]">Aryan Kumar</span>
+          </motion.h1>
 
-        {/* --- NAME ANIMATION START --- */}
-        <motion.div 
-          className="text-6xl md:text-8xl font-extrabold tracking-tight overflow-hidden"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* We split the name into letters to animate each one */}
-          {personalDetails.name.split("").map((char, index) => (
-            <motion.span 
-              key={index} 
-              variants={letterVariants} 
-              className={`inline-block ${char === " " ? "mr-4" : ""} hover:text-[#FF4D00] transition-colors duration-300 cursor-default`}
+          <motion.h2 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="text-2xl md:text-3xl font-bold text-gray-300"
+          >
+            Software Developer
+          </motion.h2>
+
+          {/* 2. CATCHY LINE */}
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="text-gray-400 text-lg max-w-lg mx-auto md:mx-0 leading-relaxed"
+          >
+            I don't just write code; I architect scalable digital solutions. 
+            From interactive UIs to robust backends, I turn complex problems into elegant experiences.
+          </motion.p>
+
+          {/* 3. DOWNLOAD CV & SOCIALS */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="flex flex-col md:flex-row items-center gap-6 pt-6"
+          >
+            {/* Download Button */}
+            <a 
+              href="/resume.pdf"  // Make sure to put your actual resume.pdf in the 'public' folder
+              download="Aryan_Kumar_Resume"
+              className="flex items-center gap-2 px-8 py-3 bg-[#FF3D00] text-white font-bold rounded-full shadow-lg shadow-orange-500/20 hover:bg-orange-600 hover:scale-105 transition-all duration-300"
             >
-              {char}
-            </motion.span>
-          ))}
-        </motion.div>
-        {/* --- NAME ANIMATION END --- */}
+              <Download size={20} />
+              Download CV
+            </a>
 
-        {/* Tagline */}
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-        >
-          {personalDetails.tagline}
-        </motion.p>
+            {/* Social Icons */}
+            <div className="flex items-center gap-5">
+              <a href="#" className="text-gray-400 hover:text-[#FF3D00] transition-colors hover:scale-110">
+                <Linkedin size={24} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-[#FF3D00] transition-colors hover:scale-110">
+                <Github size={24} />
+              </a>
+              <a href="mailto:aryan@example.com" className="text-gray-400 hover:text-[#FF3D00] transition-colors hover:scale-110">
+                <Mail size={24} />
+              </a>
+            </div>
+          </motion.div>
+        </div>
 
-        {/* Buttons */}
+        {/* --- RIGHT IMAGE (Circular Glow) --- */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-          className="flex flex-col sm:flex-row justify-center gap-4 pt-6"
+          transition={{ duration: 0.8 }}
+          className="w-full md:w-1/2 flex justify-center md:justify-end relative"
         >
-          <a href="#projects" className="px-8 py-4 bg-[#FF4D00] text-white rounded-md font-bold text-lg hover:bg-orange-600 transition shadow-lg shadow-orange-500/20">
-            View My Work
-          </a>
-          <a href="#contact" className="px-8 py-4 border-2 border-gray-300 dark:border-gray-700 rounded-md font-bold text-lg hover:border-[#FF4D00] hover:text-[#FF4D00] transition">
-            Contact Me
-          </a>
+          <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full border-[6px] border-[#FF3D00] shadow-[0_0_60px_-10px_rgba(255,61,0,0.5)] overflow-hidden bg-gray-900">
+            {/* Replace with your actual image URL */}
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" 
+              alt="Aryan Kumar"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </motion.div>
+
       </div>
     </section>
   );
 };
 
-export default Hero;
+export default Home;

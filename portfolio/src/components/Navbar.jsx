@@ -6,29 +6,18 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  const [activeLink, setActiveLink] = useState('#hero'); // Track active section
 
-  // --- 1. Animation Variant for the "Rubber Band" effect ---
-  const rubberBand = {
-    rest: { 
-      scale: 1,
-      color: 'inherit',
-    },
-    hover: {
-      scaleX: [1, 1.25, 0.75, 1.15, 0.95, 1.05, 1],
-      scaleY: [1, 0.75, 1.25, 0.85, 1.05, 0.95, 1],
-      transition: {
-        duration: 0.6, // Length of the wiggle
-        ease: "easeInOut",
-      }
-    }
-  };
-
+  // Scroll Detection & Spy
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Theme Logic
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -40,6 +29,16 @@ const Navbar = () => {
 
   const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
+  // ANIMATION: Rubber Band Name
+  const rubberBand = {
+    rest: { scale: 1, color: 'inherit' },
+    hover: {
+      scaleX: [1, 1.25, 0.75, 1.15, 0.95, 1.05, 1],
+      scaleY: [1, 0.75, 1.25, 0.85, 1.05, 0.95, 1],
+      transition: { duration: 0.6, ease: "easeInOut" }
+    }
+  };
+
   const navLinks = [
     { name: 'Home', href: '#hero' },
     { name: 'Skills', href: '#skills' },
@@ -47,7 +46,6 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
-  // Helper to split the name for animation
   const nameChars = "Aryan".split("");
 
   return (
@@ -57,7 +55,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* --- LOGO SECTION WITH ANIMATION --- */}
+          {/* LOGO */}
           <div className="flex-shrink-0 cursor-pointer">
             <a href="#hero" className="flex items-center gap-1 group">
               <span className="text-3xl font-extrabold tracking-tighter flex">
@@ -68,17 +66,13 @@ const Navbar = () => {
                     initial="rest"
                     whileHover="hover"
                     className={`inline-block cursor-default ${
-                      // Logic: First 3 letters (Ary) follow theme, last 2 (an) are Orange
-                      index < 3 
-                        ? 'dark:text-white text-black' 
-                        : 'text-[#FF4D00]'
+                      index < 3 ? 'dark:text-white text-black' : 'text-[#FF4D00]'
                     }`}
                   >
                     {char}
                   </motion.span>
                 ))}
               </span>
-              {/* Pulsing Dot Animation */}
               <motion.span 
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
@@ -87,31 +81,33 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* --- DESKTOP MENU --- */}
+          {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="text-sm font-bold uppercase tracking-wide dark:text-gray-300 text-gray-700 hover:text-[#FF4D00] dark:hover:text-[#FF4D00] transition-colors">
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-bold uppercase tracking-wide dark:text-gray-300 text-gray-700 hover:text-[#FF4D00] dark:hover:text-[#FF4D00] transition-colors"
+              >
                 {link.name}
               </a>
             ))}
           </div>
 
-          {/* --- RIGHT ACTIONS --- */}
+          {/* RIGHT ACTIONS */}
           <div className="hidden md:flex items-center gap-6">
             <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
               {theme === 'dark' ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-gray-600" />}
             </button>
-            <motion.a 
+            <a 
               href="#contact" 
-              whileHover={{ scale: 1.05 }} 
-              whileTap={{ scale: 0.95 }} 
               className="px-6 py-2 bg-[#FF4D00] text-white text-sm font-bold uppercase rounded hover:bg-orange-600 transition-colors"
             >
               Hire Me!
-            </motion.a>
+            </a>
           </div>
 
-          {/* --- MOBILE HAMBURGER --- */}
+          {/* MOBILE HAMBURGER */}
           <div className="md:hidden flex items-center gap-4">
             <button onClick={toggleTheme} className="p-2">
               {theme === 'dark' ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} />}
@@ -123,13 +119,18 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* --- MOBILE DROPDOWN --- */}
+      {/* MOBILE DROPDOWN */}
       <AnimatePresence>
         {isOpen && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="md:hidden bg-white dark:bg-black border-t dark:border-gray-800">
             <div className="px-6 py-6 space-y-4">
               {navLinks.map((link) => (
-                <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="block text-base font-bold uppercase dark:text-white text-gray-900 hover:text-[#FF4D00]">
+                <a 
+                  key={link.name} 
+                  href={link.href} 
+                  onClick={() => setIsOpen(false)} 
+                  className="block text-base font-bold uppercase dark:text-white text-gray-900 hover:text-[#FF4D00]"
+                >
                   {link.name}
                 </a>
               ))}
