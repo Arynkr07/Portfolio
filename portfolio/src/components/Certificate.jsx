@@ -10,6 +10,7 @@ import full from '../assets/full.jpg';
 import intellipaat from '../assets/intellipaat.jpg';
 import ibm from '../assets/ibm.jpg';
 import nestle from '../assets/nestle.jpg';
+import hckthn from '../assets/hckthn.png';
 // --- DATA ---
 const certificates = [
   {
@@ -84,7 +85,15 @@ const certificates = [
     date: "June 2023",
     image: nestle ,
     downloadLink: "#"
-  }
+  },
+  {
+    id: 9,
+    title: "Hackathon Participation",
+    issuer: "MERNXAI",
+    date: "August 2025",
+    image: hckthn ,
+    downloadLink: "#"
+  },
 ];
 
 const Certificates = () => {

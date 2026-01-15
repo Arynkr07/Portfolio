@@ -6,7 +6,7 @@ import resume from '../assets/resume.pdf';
 
 // --- IMAGE IMPORT ---
 // We use '..' to go up from 'components' folder, then into 'assets'
-import profileImg from '../assets/Snapchat-1714104311.jpg'; 
+// import profileImg from '../assets/Snapchat-1714104311.jpg'; 
 
 const Home = () => {
   return (
@@ -105,7 +105,7 @@ const Home = () => {
         </div>
 
         {/* --- RIGHT IMAGE --- */}
-        <motion.div 
+        {/* <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
@@ -114,13 +114,13 @@ const Home = () => {
           <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full border-[6px] border-gray-100 dark:border-[#FF3D00] shadow-[0_0_60px_-10px_rgba(255,61,0,0.3)] dark:shadow-[0_0_60px_-10px_rgba(255,61,0,0.5)] overflow-hidden bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
             
             {/* USING THE IMPORTED IMAGE VARIABLE HERE */}
-            <img
+            {/* <img
               src={profileImg} 
               alt="Aryan Kumar"
               className="w-full h-full object-cover"
             />
           </div>
-        </motion.div>
+        </motion.div> */}
 
       </div>
     </section>
